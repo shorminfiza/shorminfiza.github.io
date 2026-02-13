@@ -1,106 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Valentine Question</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: url('cc.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Pacifico', cursive;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      transition: background 0.5s;
-      overflow: hidden;
-    }
-    h1 {
-      color: deeppink;
-      text-shadow: 2px 2px lightcoral;
-      font-size: 48px;
-      margin-bottom: 40px;
-    }
-    .buttons {
-      display: flex;
-      gap: 60px; /* spacing between buttons */
-      justify-content: center;
-      margin-top: 20px;
-      position: relative;
-    }
-    button {
-      padding: 18px 36px;
-      font-size: 22px;
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-    }
-    #yesBtn {
-      background-color: hotpink;
-      color: white;
-      position: relative;
-      z-index: 1;
-    }
-    #noBtn {
-      position: absolute;
-      top: 0;
-      left: 200px; /* offset so it doesn’t overlap */
-      background-color: lightgray;
-      color: black;
-    }
-    .heart {
-      position: absolute;
-      color: red;
-      font-size: 28px;
-      animation: float 6s linear forwards;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-600px); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --title-size: clamp(2rem, 6vw, 3rem);
+  --button-size: clamp(1rem, 4vw, 1.3rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url('ss.jpg') center/cover no-repeat fixed;
+  font-family: 'Pacifico', cursive, system-ui;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+h1 {
+  font-size: var(--title-size);
+  color: #ff4f9a;
+  text-shadow: 2px 2px #ffd1e8;
+  margin-bottom: 2rem;
+}
+
+button {
+  font-size: var(--button-size);
+  padding: 0.8em 2em;
+  background: linear-gradient(135deg, #ff7eb3, #ff4f9a);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 79, 154, 0.4);
+}
+
+/* Hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 1.4rem;
+  animation: float 6s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+</style>
 </head>
+
 <body>
-  <h1>💖 Will you be my Valentine? 💖</h1>
-  <div class="buttons">
-    <button id="yesBtn" onclick="window.location.href='celebration.html'">Yes</button>
-    <button id="noBtn">No</button>
-  </div>
+<h1>💖 Will you be my Valentine? 💖</h1>
+<button onclick="location.href='celebration.html'">Continue</button>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
-
-    noBtn.addEventListener("click", () => {
-      document.body.style.background = "red";
-      setTimeout(() => {
-        alert("💔 Are you sure? Will you be my Valentine?");
-        document.body.style.background = "url('cc.jpg') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
-      }, 500);
-    });
-
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.top = window.innerHeight + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 500);
-  </script>
+<script>
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.textContent = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 500);
+</script>
 </body>
 </html>

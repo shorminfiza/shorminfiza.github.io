@@ -6,37 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      text-align: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: lavenderblush;
-      height: 100vh;
       margin: 0;
-      overflow: hidden;
-      transition: background 0.5s;
+      height: 100vh;
+      background: lavenderblush;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      transition: background 0.5s;
+      overflow: hidden;
     }
     h1 {
       color: deeppink;
       text-shadow: 2px 2px lightcoral;
-      font-size: 28px;
-      margin-bottom: 20px;
-      padding: 0 10px;
+      font-size: 40px;
+      margin: 20px;
+      padding: 0 15px;
     }
     .buttons {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 20px;
     }
     button {
-      padding: 12px 24px;
-      font-size: 18px;
+      padding: 18px 36px;
+      font-size: 22px;
       cursor: pointer;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: bold;
     }
     #yesBtn {
@@ -48,20 +49,9 @@
       background-color: lightgray;
       color: black;
     }
-    #celebration {
-      display: none;
-      font-size: 24px;
-      color: deeppink;
-      margin-top: 20px;
-      animation: pop 1s ease-in-out infinite alternate;
-    }
-    @keyframes pop {
-      from { transform: scale(1); }
-      to { transform: scale(1.2); }
-    }
     .heart, .confetti {
       position: absolute;
-      font-size: 20px;
+      font-size: 24px;
       animation: float 6s linear forwards;
     }
     @keyframes float {
@@ -76,12 +66,10 @@
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
   </div>
-  <div id="celebration">🎉 Yay! You said YES! 🎉</div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
     const yesBtn = document.getElementById("yesBtn");
-    const celebration = document.getElementById("celebration");
 
     // Floating "No" button
     noBtn.addEventListener("mouseover", () => {
@@ -100,37 +88,10 @@
       }, 500);
     });
 
-    // Clicking "Yes" shows celebration on page
+    // Clicking "Yes" goes to celebration page
     yesBtn.addEventListener("click", () => {
-      celebration.style.display = "block";
-      // Launch hearts + confetti
-      for (let i = 0; i < 30; i++) {
-        createHeart();
-        createConfetti();
-      }
+      window.location.href = "celebration.html";
     });
-
-    // Floating hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.top = window.innerHeight + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-
-    // Confetti effect
-    function createConfetti() {
-      const confetti = document.createElement("div");
-      confetti.className = "confetti";
-      confetti.innerHTML = "✨";
-      confetti.style.left = Math.random() * window.innerWidth + "px";
-      confetti.style.top = window.innerHeight + "px";
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 6000);
-    }
   </script>
 </body>
 </html>

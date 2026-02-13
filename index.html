@@ -1,71 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Cute Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: url('pp.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Pacifico', cursive;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-    h1 {
-      color: deeppink;
-      font-size: 42px;
-      text-shadow: 2px 2px hotpink;
-      margin-bottom: 40px;
-    }
-    button {
-      padding: 16px 32px;
-      font-size: 22px;
-      background-color: pink;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      color: white;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-    button:hover {
-      background-color: hotpink;
-    }
-    .heart {
-      position: absolute;
-      color: red;
-      font-size: 24px;
-      animation: float 6s linear forwards;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-600px); opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-  <h1>💖 Welcome to My Valentine Site 💖</h1>
-  <button onclick="window.location.href='valentine.html'">Continue</button>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
 
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.top = window.innerHeight + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }
-    setInterval(createHeart, 500);
-  </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --title-size: clamp(2rem, 6vw, 3rem);
+  --button-size: clamp(1rem, 4vw, 1.3rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url('pp.jpg') center/cover no-repeat fixed;
+  font-family: 'Pacifico', cursive, system-ui;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  overflow: hidden;
+  padding: 3rem 1rem;
+}
+
+h1 {
+  font-size: var(--title-size);
+  color: #ff4f9a;
+  text-shadow: 2px 2px #ffd1e8;
+}
+
+button {
+  font-size: var(--button-size);
+  padding: 0.8em 2em;
+  background: linear-gradient(135deg, #ff7eb3, #ff4f9a);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 79, 154, 0.4);
+  margin-bottom: 2rem; /* safe bottom spacing */
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 1.4rem;
+  animation: float 6s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+
+<button onclick="location.href='valentine.html'">Continue</button>
+
+<script>
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.textContent = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 500);
+</script>
 </body>
 </html>

@@ -4,28 +4,30 @@
   <meta charset="UTF-8">
   <title>Celebration</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       height: 100vh;
-      background: url('cc.jpg') no-repeat center center fixed;
+      background: url('celebration.jpg') no-repeat center center fixed;
       background-size: cover;
+      font-family: 'Pacifico', cursive;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
       overflow: hidden;
     }
     h1 {
       color: white;
       text-shadow: 3px 3px hotpink;
-      font-size: 42px;
+      font-size: 52px;
       margin: 20px;
     }
-    .heart, .confetti {
+    .heart {
       position: absolute;
+      color: red;
       font-size: 28px;
       animation: float 6s linear forwards;
     }
@@ -39,7 +41,6 @@
   <h1>🎉 Yay! You said YES! 🎉</h1>
 
   <script>
-    // Floating hearts + confetti
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -49,19 +50,7 @@
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     }
-
-    function createConfetti() {
-      const confetti = document.createElement("div");
-      confetti.className = "confetti";
-      confetti.innerHTML = "✨";
-      confetti.style.left = Math.random() * window.innerWidth + "px";
-      confetti.style.top = window.innerHeight + "px";
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 6000);
-    }
-
     setInterval(createHeart, 400);
-    setInterval(createConfetti, 600);
   </script>
 </body>
 </html>

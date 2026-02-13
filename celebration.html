@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Celebration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('cc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      color: white;
+      text-shadow: 3px 3px hotpink;
+      font-size: 42px;
+      margin: 20px;
+    }
+    .heart, .confetti {
+      position: absolute;
+      font-size: 28px;
+      animation: float 6s linear forwards;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-600px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Yay! You said YES! 🎉</h1>
+
+  <script>
+    // Floating hearts + confetti
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.innerHTML = "✨";
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.top = window.innerHeight + "px";
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 6000);
+    }
+
+    setInterval(createHeart, 400);
+    setInterval(createConfetti, 600);
+  </script>
+</body>
+</html>

@@ -3,31 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentine Question</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
+      margin: 0;
+      height: 100vh;
+      background: url('cc.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Pacifico', cursive;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: lavenderblush;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
       transition: background 0.5s;
+      overflow: hidden;
     }
     h1 {
       color: deeppink;
       text-shadow: 2px 2px lightcoral;
-      font-size: 48px; /* Larger text */
+      font-size: 48px;
       margin-bottom: 40px;
-      padding: 0 15px;
+    }
+    .buttons {
+      display: flex;
+      gap: 60px; /* spacing between buttons */
+      justify-content: center;
+      margin-top: 20px;
+      position: relative;
     }
     button {
-      padding: 16px 32px; /* Bigger buttons */
+      padding: 18px 36px;
       font-size: 22px;
-      margin: 15px;
       cursor: pointer;
       border: none;
       border-radius: 12px;
@@ -36,17 +44,21 @@
     #yesBtn {
       background-color: hotpink;
       color: white;
+      position: relative;
+      z-index: 1;
     }
     #noBtn {
       position: absolute;
+      top: 0;
+      left: 200px; /* offset so it doesn’t overlap */
       background-color: lightgray;
       color: black;
     }
     .heart {
       position: absolute;
       color: red;
-      font-size: 28px; /* Larger hearts */
-      animation: float 6s infinite;
+      font-size: 28px;
+      animation: float 6s linear forwards;
     }
     @keyframes float {
       0% { transform: translateY(0); opacity: 1; }
@@ -56,9 +68,10 @@
 </head>
 <body>
   <h1>💖 Will you be my Valentine? 💖</h1>
-  <!-- Yes button now leads to celebration page -->
-  <button id="yesBtn" onclick="window.location.href='celebration.html'">Yes</button>
-  <button id="noBtn">No</button>
+  <div class="buttons">
+    <button id="yesBtn" onclick="window.location.href='celebration.html'">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
 
   <script>
     const noBtn = document.getElementById("noBtn");
@@ -73,11 +86,11 @@
       document.body.style.background = "red";
       setTimeout(() => {
         alert("💔 Are you sure? Will you be my Valentine?");
-        document.body.style.background = "lavenderblush";
+        document.body.style.background = "url('cc.jpg') no-repeat center center fixed";
+        document.body.style.backgroundSize = "cover";
       }, 500);
     });
 
-    // Floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -85,7 +98,6 @@
       heart.style.left = Math.random() * window.innerWidth + "px";
       heart.style.top = window.innerHeight + "px";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 6000);
     }
     setInterval(createHeart, 500);

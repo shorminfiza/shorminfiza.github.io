@@ -3,60 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentine Question</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background: lavenderblush;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
-      transition: background 0.5s;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: lavenderblush;
+      height: 100vh;
+      margin: 0;
       overflow: hidden;
+      transition: background 0.5s;
     }
     h1 {
+      margin-top: 60px;
       color: deeppink;
       text-shadow: 2px 2px lightcoral;
-      font-size: 40px;
-      margin: 20px;
-      padding: 0 15px;
-    }
-    .buttons {
-      display: flex;
-      gap: 40px; /* More spacing between buttons */
-      justify-content: center;
-      margin-top: 30px;
-      position: relative;
+      font-size: 36px;
     }
     button {
-      padding: 18px 36px;
-      font-size: 22px;
+      padding: 12px 24px;
+      font-size: 20px;
+      margin: 10px;
       cursor: pointer;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: bold;
     }
     #yesBtn {
       background-color: hotpink;
       color: white;
-      position: relative; /* stays in place */
-      z-index: 1;
     }
     #noBtn {
       position: absolute;
-      top: 0; /* Start above Yes button */
-      left: 150px; /* Offset to the right */
       background-color: lightgray;
       color: black;
     }
-    .heart, .confetti {
+    .heart {
       position: absolute;
+      color: red;
       font-size: 24px;
-      animation: float 6s linear forwards;
+      animation: float 6s infinite;
     }
     @keyframes float {
       0% { transform: translateY(0); opacity: 1; }
@@ -66,16 +51,12 @@
 </head>
 <body>
   <h1>💖 Will you be my Valentine? 💖</h1>
-  <div class="buttons">
-    <button id="yesBtn">Yes</button>
-    <button id="noBtn">No</button>
-  </div>
+  <!-- Yes button now redirects to celebration.html -->
+  <button id="yesBtn" onclick="window.location.href='celebration.html'">Yes</button>
+  <button id="noBtn">No</button>
 
   <script>
     const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-
-    // Floating "No" button
     noBtn.addEventListener("mouseover", () => {
       const x = Math.random() * (window.innerWidth - 100);
       const y = Math.random() * (window.innerHeight - 50);
@@ -83,7 +64,6 @@
       noBtn.style.top = y + "px";
     });
 
-    // Clicking "No" turns background red and re-asks
     noBtn.addEventListener("click", () => {
       document.body.style.background = "red";
       setTimeout(() => {
@@ -92,10 +72,18 @@
       }, 500);
     });
 
-    // Clicking "Yes" goes to celebration page
-    yesBtn.addEventListener("click", () => {
-      window.location.href = "celebration.html";
-    });
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 500);
   </script>
 </body>
 </html>

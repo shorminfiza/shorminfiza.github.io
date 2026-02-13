@@ -5,6 +5,10 @@
   <title>Valentine Question</title>
   <style>
     body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       background: lavenderblush;
@@ -14,18 +18,19 @@
       transition: background 0.5s;
     }
     h1 {
-      margin-top: 60px;
       color: deeppink;
       text-shadow: 2px 2px lightcoral;
-      font-size: 36px;
+      font-size: 48px; /* Larger text */
+      margin-bottom: 40px;
+      padding: 0 15px;
     }
     button {
-      padding: 12px 24px;
-      font-size: 20px;
-      margin: 10px;
+      padding: 16px 32px; /* Bigger buttons */
+      font-size: 22px;
+      margin: 15px;
       cursor: pointer;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       font-weight: bold;
     }
     #yesBtn {
@@ -40,7 +45,7 @@
     .heart {
       position: absolute;
       color: red;
-      font-size: 24px;
+      font-size: 28px; /* Larger hearts */
       animation: float 6s infinite;
     }
     @keyframes float {
@@ -51,7 +56,7 @@
 </head>
 <body>
   <h1>💖 Will you be my Valentine? 💖</h1>
-  <!-- Yes button now redirects to celebration.html -->
+  <!-- Yes button now leads to celebration page -->
   <button id="yesBtn" onclick="window.location.href='celebration.html'">Yes</button>
   <button id="noBtn">No</button>
 

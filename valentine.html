@@ -27,10 +27,10 @@
     }
     .buttons {
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 40px; /* More spacing between buttons */
       justify-content: center;
-      margin-top: 20px;
+      margin-top: 30px;
+      position: relative;
     }
     button {
       padding: 18px 36px;
@@ -43,9 +43,13 @@
     #yesBtn {
       background-color: hotpink;
       color: white;
+      position: relative; /* stays in place */
+      z-index: 1;
     }
     #noBtn {
       position: absolute;
+      top: 0; /* Start above Yes button */
+      left: 150px; /* Offset to the right */
       background-color: lightgray;
       color: black;
     }

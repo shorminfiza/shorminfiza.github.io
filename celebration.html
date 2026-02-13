@@ -1,56 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Celebration</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: url('celebration.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Pacifico', cursive;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    h1 {
-      color: white;
-      text-shadow: 3px 3px hotpink;
-      font-size: 52px;
-      margin: 20px;
-    }
-    .heart {
-      position: absolute;
-      color: red;
-      font-size: 28px;
-      animation: float 6s linear forwards;
-    }
-    @keyframes float {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-600px); opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-  <h1>🎉 Yay! You said YES! 🎉</h1>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celebration</title>
 
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * window.innerWidth + "px";
-      heart.style.top = window.innerHeight + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --title-size: clamp(2.2rem, 6vw, 3.2rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url('cute.jpg') center/cover no-repeat fixed;
+  font-family: 'Pacifico', cursive, system-ui;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: var(--title-size);
+  color: white;
+  text-shadow: 3px 3px hotpink;
+  padding: 1rem;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 1.5rem;
+  animation: float 6s linear forwards;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-120vh);
+    opacity: 0;
+  }
+}
+
+/* Music toggle button */
+#musicBtn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 182, 193, 0.9);
+  border: none;
+  border-radius: 50%;
+  padding: 0.6em;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.5);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<h1>🎉 Yay! You said YES! 🎉</h1>
+
+<button id="musicBtn">🔊</button>
+
+<script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+music.volume = 0;
+
+function fadeInMusic() {
+  if (!music.paused) return;
+  music.play();
+  let vol = 0;
+  const fade = setInterval(() => {
+    vol += 0.05;
+    if (vol >= 1) {
+      vol = 1;
+      clearInterval(fade);
     }
-    setInterval(createHeart, 400);
-  </script>
+    music.volume = vol;
+  }, 150);
+}
+
+/* Start music after first user interaction (mobile-safe) */
+document.addEventListener("click", () => {
+  fadeInMusic();
+}, { once: true });
+
+btn.onclick = () => {
+  if (music.paused) {
+    fadeInMusic();
+    btn.textContent = "🔊";
+  } else {
+    music.pause();
+    btn.textContent = "🔇";
+  }
+};
+
+/* Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
 </body>
 </html>
